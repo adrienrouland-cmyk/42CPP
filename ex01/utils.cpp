@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:30:06 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/08 17:21:45 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/08 17:35:33 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 std::string trunc_ten(std::string to_trunc)
 {
-	if (to_trunc.length() < 10)
+	if (to_trunc.length() <= 10)
 		return (to_trunc);
 	else
 		return (to_trunc.substr(0, 9) + ".");

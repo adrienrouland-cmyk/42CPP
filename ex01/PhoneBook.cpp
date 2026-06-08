@@ -6,17 +6,15 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 19:46:55 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/08 17:30:39 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/08 17:32:02 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include "phone.hpp"
 
-PhoneBook::PhoneBook(void)
+PhoneBook::PhoneBook(void) : current_contact(0), nb_contact(0)
 {
-	this->nb_contact = 0;
-	this->current_contact = 0;
 }
 
 PhoneBook::~PhoneBook(void)
