@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 19:44:12 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/05 00:05:12 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/08 14:46:18 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ class PhoneBook
 		~PhoneBook(void);
 		void add_contact(void);
 		void search_contact(void);
+		void	SetContactId(int id);
+		std::string	GetFirstNameId(int id);
+		std::string	GetLastNameId(int id);
+		std::string	GetPhoneNumberId(int id);
+		std::string	GetDarkestSecretId(int id);
 	private:
 		Contact contacts[8];
 		int current_contact;
