@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 19:44:12 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/08 14:46:18 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/08 15:42:39 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class PhoneBook
 		void	SetContactId(int id);
 		std::string	GetFirstNameId(int id);
 		std::string	GetLastNameId(int id);
+		std::string	GetNickNameId(int id);
 		std::string	GetPhoneNumberId(int id);
 		std::string	GetDarkestSecretId(int id);
 	private:
