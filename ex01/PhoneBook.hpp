@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 19:44:12 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/08 17:38:35 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/08 17:47:01 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@
 class PhoneBook
 {
 	public:
-		PhoneBook(void);
-		~PhoneBook(void);
-		void add_contact(void);
-		void search_contact(void);
-		void	SetContactId(int id);
-		void	print_list(void);
-		std::string	GetFirstNameId(int id);
-		std::string	GetLastNameId(int id);
-		std::string	GetNickNameId(int id);
-		std::string	GetPhoneNumberId(int id);
-		std::string	GetDarkestSecretId(int id);
+					PhoneBook(void);
+					~PhoneBook(void);
+	void 			AddContact(void);
+		void 		SearchContact(void);
+		void		SetContactId(int id);
+		void		print_list(void) const;
+		std::string	GetFirstNameId(int id) const;
+		std::string	GetLastNameId(int id) const;
+		std::string	GetNickNameId(int id) const;
+		std::string	GetPhoneNumberId(int id) const;
+		std::string	GetDarkestSecretId(int id) const;
 	private:
-		Contact contacts[8];
-		int current_contact;
-		int nb_contact;
+		Contact 	_contacts[8];
+		int 		_current_contact;
+		int 		_nb_contact;
 };
 
 #endif

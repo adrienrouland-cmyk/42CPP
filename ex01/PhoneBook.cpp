@@ -6,14 +6,14 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 19:46:55 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/08 17:39:55 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/08 17:46:33 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include "phone.hpp"
 
-PhoneBook::PhoneBook(void) : current_contact(0), nb_contact(0)
+PhoneBook::PhoneBook(void) : _current_contact(0), _nb_contact(0)
 {
 }
 
@@ -21,27 +21,27 @@ PhoneBook::~PhoneBook(void)
 {
 }
 
-void	PhoneBook::add_contact(void)
+void	PhoneBook::AddContact(void)
 {
-	SetContactId(current_contact % 8);
-	this->current_contact++;
-	if (nb_contact < 8)
-		this->nb_contact++;
+	SetContactId(_current_contact % 8);
+	this->_current_contact++;
+	if (_nb_contact < 8)
+		this->_nb_contact++;
 }
 
-void	PhoneBook::print_list (void)
+void	PhoneBook::print_list(void) const
 {
 	int id;
 	
 	id = 0;
-	if (this->nb_contact != 0)
+	if (this->_nb_contact != 0)
 	{		
 		std::cout << "|" << std::setw(10) << "Index" << "|";
 		std::cout << std::setw(10) << "First name" << "|";
 		std::cout << std::setw(10) << "Last name" << "|";
 		std::cout << std::setw(10) << "Nick name" << "|" << std::endl;
 	}
-	while (id < this->nb_contact)
+	while (id < this->_nb_contact)
 	{
 		std::cout << "|" << std::setw(10) << id << "|";
 		std::cout << std::setw(10) << trunc_ten(this->GetFirstNameId(id)) << "|";
@@ -51,24 +51,24 @@ void	PhoneBook::print_list (void)
 	}
 }
 
-void	PhoneBook::search_contact(void)
+void	PhoneBook::SearchContact(void)
 {
 	int id;
 	std::string index;
 
 	print_list();
-	if (this->nb_contact != 0)
+	if (this->_nb_contact != 0)
 	{
-		if (this->nb_contact != 1)
+		if (this->_nb_contact != 1)
 			std::cout << "Enter the index you want between 0 and " << 
-			this->nb_contact -1 << " :" << std::endl;
+			this->_nb_contact -1 << " :" << std::endl;
 		else
 			std::cout << "Enter 0 to search the first contact" << std::endl;
 		index = get_line("");
 		if (is_valid_index(index))
 		{
 			id = index[0] - '0';
-			if (id < this->nb_contact)
+			if (id < this->_nb_contact)
 			{
 				std::cout << "First name = " << this->GetFirstNameId(id) << std::endl;
 				std::cout << "Last name = " << this->GetLastNameId(id) << std::endl;
@@ -99,32 +99,32 @@ void	PhoneBook::SetContactId(int id)
 	NickName = get_line("- Input the nick name :");
 	PhoneNumber = get_line("- Input the phone number :");
 	DarkestSecret = get_line("- Input the darkest secret :");
-	this->contacts[id].SetContact(FirstName, LastName, NickName,
+	this->_contacts[id].SetContact(FirstName, LastName, NickName,
 		PhoneNumber, DarkestSecret);
 	std::cout << "New contact added !" << std::endl;
 }
 
-std::string	PhoneBook::GetFirstNameId(int id)
+std::string	PhoneBook::GetFirstNameId(int id) const
 {
-	return (this->contacts[id].GetFirstName());
+	return (this->_contacts[id].GetFirstName());
 }
 
-std::string	PhoneBook::GetLastNameId(int id)
+std::string	PhoneBook::GetLastNameId(int id) const
 {
-	return (this->contacts[id].GetLastName());
+	return (this->_contacts[id].GetLastName());
 }
 
-std::string	PhoneBook::GetNickNameId(int id)
+std::string	PhoneBook::GetNickNameId(int id) const
 {
-	return (this->contacts[id].GetNickName());
+	return (this->_contacts[id].GetNickName());
 }
 
-std::string	PhoneBook::GetPhoneNumberId(int id)
+std::string	PhoneBook::GetPhoneNumberId(int id) const
 {
-	return (this->contacts[id].GetPhoneNumber());	
+	return (this->_contacts[id].GetPhoneNumber());	
 }
 
-std::string	PhoneBook::GetDarkestSecretId(int id)
+std::string	PhoneBook::GetDarkestSecretId(int id) const
 {
-	return (this->contacts[id].GetDarkestSecret());
+	return (this->_contacts[id].GetDarkestSecret());
 }

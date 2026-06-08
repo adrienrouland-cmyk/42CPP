@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 19:42:00 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/08 17:22:23 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/08 17:47:42 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	main(void)
 	{
 		str = get_line("- Please enter your next command : ");
 		if (str == "ADD")
-			phonebook.add_contact();
+			phonebook.AddContact();
 		else if (str == "SEARCH")
-			phonebook.search_contact();
+			phonebook.SearchContact();
 		else if (str != "EXIT")
 			std::cout << "Incorrect command" << std::endl;
 	}
