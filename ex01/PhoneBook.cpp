@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 19:46:55 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/08 17:12:57 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/08 17:30:39 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ void	PhoneBook::print_list(void)
 	id = 0;
 	if (this->nb_contact != 0)
 	{		
-		std::cout << " | " << std::setw(10) << "Index" << " | ";
-		std::cout << std::setw(10) << "First name" << " | ";
-		std::cout << std::setw(10) << "Last name" << " | ";
-		std::cout << std::setw(10) << "Nick name" << " | " << std::endl;
+		std::cout << "|" << std::setw(10) << "Index" << "|";
+		std::cout << std::setw(10) << "First name" << "|";
+		std::cout << std::setw(10) << "Last name" << "|";
+		std::cout << std::setw(10) << "Nick name" << "|" << std::endl;
 	}
 	while (id < this->nb_contact)
 	{
-		std::cout << " | " << std::setw(10) << id << " | ";
-		std::cout << std::setw(10) << trunc_ten(this->GetFirstNameId(id)) << " | ";
-		std::cout << std::setw(10) << trunc_ten(this->GetLastNameId(id)) << " | ";
-		std::cout << std::setw(10) << trunc_ten(this->GetNickNameId(id)) << " | " << std::endl;
+		std::cout << "|" << std::setw(10) << id << "|";
+		std::cout << std::setw(10) << trunc_ten(this->GetFirstNameId(id)) << "|";
+		std::cout << std::setw(10) << trunc_ten(this->GetLastNameId(id)) << "|";
+		std::cout << std::setw(10) << trunc_ten(this->GetNickNameId(id)) << "|" << std::endl;
 		id++;
 	}
 }
