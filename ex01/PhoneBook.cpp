@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 19:46:55 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/08 16:03:44 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/08 16:38:32 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 PhoneBook::PhoneBook(void)
 {
 	this->nb_contact = 0;
+	this->current_contact = 0;
 }
 
 PhoneBook::~PhoneBook(void)
@@ -25,9 +26,32 @@ PhoneBook::~PhoneBook(void)
 
 void	PhoneBook::add_contact(void)
 {
-	SetContactId(nb_contact % 8);
+	SetContactId(current_contact % 8);
+	this->current_contact++;
 	if (nb_contact < 8)
 		this->nb_contact++;
+}
+
+void	PhoneBook::print_list(void)
+{
+	int id;
+	
+	id = 0;
+	if (this->nb_contact != 0)
+	{		
+		std::cout << std::setw(10) << "Index" << " | ";
+		std::cout << std::setw(10) << "First name" << " | ";
+		std::cout << std::setw(10) << "Last name" << " | ";
+		std::cout << std::setw(10) << "Nick name" << std::endl;
+	}
+	while (id < this->nb_contact)
+	{
+		std::cout << std::setw(10) << id << " | ";
+		std::cout << std::setw(10) << trunc_ten(this->GetFirstNameId(id)) << " | ";
+		std::cout << std::setw(10) << trunc_ten(this->GetLastNameId(id)) << " | ";
+		std::cout << std::setw(10) << trunc_ten(this->GetNickNameId(id)) << std::endl;
+		id++;
+	}
 }
 
 void	PhoneBook::search_contact(void)
@@ -35,6 +59,7 @@ void	PhoneBook::search_contact(void)
 	int id;
 	std::string index;
 
+	print_list();
 	if (this->nb_contact != 0)
 	{
 		if (this->nb_contact != 1)
@@ -48,10 +73,11 @@ void	PhoneBook::search_contact(void)
 			id = index[0] - '0';
 			if (id < this->nb_contact)
 			{
-				std::cout << std::setw(10) << trunc_ten(this->GetFirstNameId(id)) << " | ";
-				std::cout << std::setw(10) << trunc_ten(this->GetLastNameId(id)) << " | ";
-				std::cout << std::setw(10) << trunc_ten(this->GetPhoneNumberId(id)) << " | ";
-				std::cout << std::setw(10) << trunc_ten(this->GetNickNameId(id)) << std::endl;	
+				std::cout << "First name = " << this->GetFirstNameId(id) << std::endl;
+				std::cout << "Last name = " << this->GetLastNameId(id) << std::endl;
+				std::cout << "Nick name = " << this->GetNickNameId(id) << std::endl;
+				std::cout << "Phone number = " << this->GetPhoneNumberId(id) << std::endl;
+				std::cout << "Darkest secret = " << this->GetDarkestSecretId(id) << std::endl;				
 			}
 			else
 				std::cout << "Incorrect id value" << std::endl;
@@ -98,7 +124,7 @@ std::string	PhoneBook::GetLastNameId(int id)
 
 std::string	PhoneBook::GetNickNameId(int id)
 {
-	return (this->contacts[id].GetLastName());
+	return (this->contacts[id].GetNickName());
 }
 
 std::string	PhoneBook::GetPhoneNumberId(int id)
