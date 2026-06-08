@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 19:46:55 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/08 15:52:18 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/08 16:03:44 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	PhoneBook::add_contact(void)
 void	PhoneBook::search_contact(void)
 {
 	int id;
+	std::string index;
 
 	if (this->nb_contact != 0)
 	{
@@ -41,24 +42,25 @@ void	PhoneBook::search_contact(void)
 			this->nb_contact -1 << " :" << std::endl;
 		else
 			std::cout << "Enter 0 to search the first contact" << std::endl;
-		std::cin >> id; // a proteger si aleur non numerique
-		if (id < this->nb_contact)
+		std::cin >> index; // a proteger si aleur non numerique
+		if (is_valid_index(index))
 		{
-			std::cout << std::setw(10) << trunc_ten(this->GetFirstNameId(id)) << " | ";
-			std::cout << std::setw(10) << trunc_ten(this->GetLastNameId(id)) << " | ";
-			std::cout << std::setw(10) << trunc_ten(this->GetPhoneNumberId(id)) << " | ";
-			std::cout << std::setw(10) << trunc_ten(this->GetNickNameId(id)) << std::endl;	
+			id = index[0] - '0';
+			if (id < this->nb_contact)
+			{
+				std::cout << std::setw(10) << trunc_ten(this->GetFirstNameId(id)) << " | ";
+				std::cout << std::setw(10) << trunc_ten(this->GetLastNameId(id)) << " | ";
+				std::cout << std::setw(10) << trunc_ten(this->GetPhoneNumberId(id)) << " | ";
+				std::cout << std::setw(10) << trunc_ten(this->GetNickNameId(id)) << std::endl;	
+			}
+			else
+				std::cout << "Incorrect id value" << std::endl;
 		}
 		else
-		{
-			std::cout << "Incorrect id value" << std::endl;
-		}
+			std::cout << "ID value must be a number between 0 and 7" << std::endl;
 	}
 	else
-	{
-		
 		std::cout << "There is no contact to search" << std::endl;
-	}
 }
 
 void	PhoneBook::SetContactId(int id)
