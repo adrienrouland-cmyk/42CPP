@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 19:46:55 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/08 17:46:33 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/08 18:47:50 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	PhoneBook::AddContact(void)
 		this->_nb_contact++;
 }
 
-void	PhoneBook::print_list(void) const
+void	PhoneBook::PrintList(void) const
 {
 	int id;
 	
@@ -51,39 +51,43 @@ void	PhoneBook::print_list(void) const
 	}
 }
 
+void	PhoneBook::DisplayContact(int id) const
+{
+	std::cout << "First name = " << this->GetFirstNameId(id) << std::endl;
+	std::cout << "Last name = " << this->GetLastNameId(id) << std::endl;
+	std::cout << "Nick name = " << this->GetNickNameId(id) << std::endl;
+	std::cout << "Phone number = " << this->GetPhoneNumberId(id) << std::endl;
+	std::cout << "Darkest secret = " << this->GetDarkestSecretId(id) << std::endl;	
+}
+
 void	PhoneBook::SearchContact(void)
 {
 	int id;
 	std::string index;
 
-	print_list();
-	if (this->_nb_contact != 0)
+	PrintList();
+	if (this->_nb_contact == 0)
 	{
-		if (this->_nb_contact != 1)
-			std::cout << "Enter the index you want between 0 and " << 
-			this->_nb_contact -1 << " :" << std::endl;
-		else
-			std::cout << "Enter 0 to search the first contact" << std::endl;
-		index = get_line("");
-		if (is_valid_index(index))
-		{
-			id = index[0] - '0';
-			if (id < this->_nb_contact)
-			{
-				std::cout << "First name = " << this->GetFirstNameId(id) << std::endl;
-				std::cout << "Last name = " << this->GetLastNameId(id) << std::endl;
-				std::cout << "Nick name = " << this->GetNickNameId(id) << std::endl;
-				std::cout << "Phone number = " << this->GetPhoneNumberId(id) << std::endl;
-				std::cout << "Darkest secret = " << this->GetDarkestSecretId(id) << std::endl;				
-			}
-			else
-				std::cout << "Incorrect id value" << std::endl;
-		}
-		else
-			std::cout << "ID value must be a number between 0 and 7" << std::endl;
-	}
-	else
 		std::cout << "There is no contact to search" << std::endl;
+		return ;
+	}
+	while (true)
+	{
+		index = get_line(PrintGoodInputNumber(this->_nb_contact));
+		if (!is_valid_index(index))
+		{
+			PrintGoodWarningNumber(this->_nb_contact);
+			continue;
+		}
+		id = index[0] - '0';
+		if (id >= this->_nb_contact)
+		{
+			PrintGoodWarningNumber(this->_nb_contact);
+			continue;
+		}
+		DisplayContact(id);
+		break;
+	}
 }
 
 void	PhoneBook::SetContactId(int id)

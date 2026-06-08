@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 15:30:06 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/08 17:35:33 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/08 18:45:58 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,23 @@ bool is_valid_index(std::string index)
 	if (index[0] < '0' || index[0] > '7')
 		return (false);
 	return (true);	
+}
+
+std::string	PrintGoodInputNumber(int nb_contact)
+{
+	if (nb_contact != 1)
+	{
+		
+		return ("Enter the index you want between 0 and " + std::string(1, nb_contact -1 + '0') + " :");
+	}
+	else
+		return ("Enter 0 to search the first contact");
+}
+
+void	PrintGoodWarningNumber(int nb_contact)
+{
+	if (nb_contact != 1)
+		std::cout << "Index value must be a number between 0 and " << nb_contact -1 << std::endl;
+	else
+		std::cout << "Index value must be the number 0" << std::endl;
 }
