@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 19:46:55 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/08 17:32:02 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/08 17:39:55 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ PhoneBook::PhoneBook(void) : current_contact(0), nb_contact(0)
 
 PhoneBook::~PhoneBook(void)
 {
-	
 }
 
 void	PhoneBook::add_contact(void)
@@ -30,7 +29,7 @@ void	PhoneBook::add_contact(void)
 		this->nb_contact++;
 }
 
-void	PhoneBook::print_list(void)
+void	PhoneBook::print_list (void)
 {
 	int id;
 	
