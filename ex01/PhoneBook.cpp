@@ -6,14 +6,14 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 19:46:55 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/08 18:47:50 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/08 18:56:57 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include "phone.hpp"
 
-PhoneBook::PhoneBook(void) : _current_contact(0), _nb_contact(0)
+PhoneBook::PhoneBook(void) : _currentContact(0), _nbContact(0)
 {
 }
 
@@ -23,10 +23,10 @@ PhoneBook::~PhoneBook(void)
 
 void	PhoneBook::AddContact(void)
 {
-	SetContactId(_current_contact % 8);
-	this->_current_contact++;
-	if (_nb_contact < 8)
-		this->_nb_contact++;
+	SetContactId(_currentContact % 8);
+	this->_currentContact++;
+	if (_nbContact < 8)
+		this->_nbContact++;
 }
 
 void	PhoneBook::PrintList(void) const
@@ -34,14 +34,14 @@ void	PhoneBook::PrintList(void) const
 	int id;
 	
 	id = 0;
-	if (this->_nb_contact != 0)
+	if (this->_nbContact != 0)
 	{		
 		std::cout << "|" << std::setw(10) << "Index" << "|";
 		std::cout << std::setw(10) << "First name" << "|";
 		std::cout << std::setw(10) << "Last name" << "|";
 		std::cout << std::setw(10) << "Nick name" << "|" << std::endl;
 	}
-	while (id < this->_nb_contact)
+	while (id < this->_nbContact)
 	{
 		std::cout << "|" << std::setw(10) << id << "|";
 		std::cout << std::setw(10) << trunc_ten(this->GetFirstNameId(id)) << "|";
@@ -66,23 +66,23 @@ void	PhoneBook::SearchContact(void)
 	std::string index;
 
 	PrintList();
-	if (this->_nb_contact == 0)
+	if (this->_nbContact == 0)
 	{
 		std::cout << "There is no contact to search" << std::endl;
 		return ;
 	}
 	while (true)
 	{
-		index = get_line(PrintGoodInputNumber(this->_nb_contact));
+		index = get_line(PrintGoodInputNumber(this->_nbContact));
 		if (!is_valid_index(index))
 		{
-			PrintGoodWarningNumber(this->_nb_contact);
+			PrintGoodWarningNumber(this->_nbContact);
 			continue;
 		}
 		id = index[0] - '0';
-		if (id >= this->_nb_contact)
+		if (id >= this->_nbContact)
 		{
-			PrintGoodWarningNumber(this->_nb_contact);
+			PrintGoodWarningNumber(this->_nbContact);
 			continue;
 		}
 		DisplayContact(id);

@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 19:44:12 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/08 18:06:48 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/08 18:56:02 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ class PhoneBook
 		std::string	GetDarkestSecretId(int id) const;
 	private:
 		Contact 	_contacts[8];
-		int 		_current_contact;
-		int 		_nb_contact;
+		int 		_currentContact;
+		int 		_nbContact;
 };
 
 #endif
