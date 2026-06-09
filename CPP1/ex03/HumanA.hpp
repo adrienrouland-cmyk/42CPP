@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 18:58:32 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/09 19:23:16 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/09 19:56:42 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class HumanA
 		void			attack(void);
 	private:
 		std::string 	_name;
-		Weapon			_weapon;
+		Weapon			&_weapon;
 };
 
 #endif
