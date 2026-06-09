@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 18:53:12 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/09 16:51:04 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/09 17:08:33 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,20 +77,40 @@ void	Account::displayAccountsInfos(void)
 void	Account::makeDeposit(int deposit)
 {
 	Account::_totalAmount += deposit;
+	Account::_totalNbDeposits++;
+	Account::_displayTimestamp();
+	std::cout << "index:" << this->_accountIndex << ";";
+	std::cout << "p_amount:" << this->_amount << ";";
+	std::cout << "deposit:" << deposit << ";";
+	this->_amount += deposit;
+	std::cout << "amount:" << this->_amount << ";";
 	this->_nbDeposits++;
+	std::cout << "nb_deposits:" << this->_nbDeposits << std::endl;
 }
+// [19920104_091532] index:0;p_amount:42;deposit:5;amount:47;nb_deposits:1
 
 bool	Account::makeWithdrawal(int withdrawal)
 {
+	Account::_displayTimestamp();
+	std::cout << "index:" << this->_accountIndex << ";";
+	std::cout << "p_amount:" << this->_amount << ";";
 	if (this->_amount > withdrawal)
 	{
 		Account::_totalAmount -= withdrawal;
+		Account::_totalNbWithdrawals++;
+		std::cout << "withdrawal:" << withdrawal << ";";
+		this->_amount -= withdrawal;
+		std::cout << "amount:" << this->_amount << ";";
 		this->_nbWithdrawals++;
+		std::cout << "nb_withdrawals:" << this->_nbWithdrawals << std::endl;
 		return (true);
 	}
+	std::cout << "withdrawal:refused" << std::endl;
 	return (false);
 }
 
+// [19920104_091532] index:4;p_amount:1321;withdrawal:76;amount:1245;nb_withdrawals:1
+// [19920104_091532] index:5;p_amount:23;withdrawal:refused
 int		Account::checkAmount(void) const
 {
 	return this->_amount;
@@ -113,6 +133,6 @@ void	Account::_displayTimestamp(void)
 	
 	time(&rawtime);
 	timeinfo = localtime(&rawtime);
-	strftime(buffer, 80,"[%Y%m%j_%H%M%S] ", timeinfo);
+	strftime(buffer, 80,"[%Y%m%d_%H%M%S] ", timeinfo);
 	std::cout << buffer;	
 }
