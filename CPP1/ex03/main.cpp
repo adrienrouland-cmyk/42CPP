@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 18:55:11 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/09 19:23:36 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/09 21:56:33 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,13 @@ int	main(void)
 		bob.attack();
 	}
 	{
-		
+		Weapon club = Weapon("crude spiked club");
+
+		HumanB jim("Jim");
+		jim.setWeapon(club);
+		jim.attack();
+		club.setType("some other type of club");
+		jim.attack();
 	}
 	return (0);
 }

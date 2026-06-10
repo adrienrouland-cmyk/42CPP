@@ -6,12 +6,12 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 18:58:32 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/09 19:56:42 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/09 20:18:02 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HUMAN_A_H
-#define HUMAN_A_H
+# define HUMAN_A_H
 
 #include "Weapon.hpp"
 
