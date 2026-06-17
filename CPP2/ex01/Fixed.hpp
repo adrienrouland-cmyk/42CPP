@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/16 19:23:46 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/17 12:09:41 by arouland         ###   ########.fr       */
+/*   Created: 2026/06/16 19:23:48 by arouland          #+#    #+#             */
+/*   Updated: 2026/06/16 19:28:28 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#ifndef FIXED_H
+#define FIXED_H
 
-#include <iostream>
-
-int     main(void) 
+class Fixed
 {
-    Fixed a;
-    Fixed b(a);
-    Fixed c;
+	public:
+		Fixed(void);
+		Fixed(Fixed const &src);
+		~Fixed(void);
+		Fixed &operator=(Fixed const &rhs);
 
-    c = b;
-    
-    std::cout << a.getRawBits() << std::endl;
-    std::cout << b.getRawBits() << std::endl;
-    std::cout << c.getRawBits() << std::endl;
-    
-    return 0;
-}
+		int		getRawBits(void) const;
+		void	setRawBits(int const raw);
+	private:
+		int	_nb;
+		static const int _nbFractBits;
+};
+
+#endif
