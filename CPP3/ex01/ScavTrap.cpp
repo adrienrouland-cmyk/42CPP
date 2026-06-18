@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 16:56:33 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/18 19:36:05 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/18 19:50:01 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ void    ScavTrap::attack(const std::string& target)
         this->_energyPoints--;
     }
     else
-        std::cout << "SUPER ScavTrap " << this->_name << " has not enough energy to attack !";
+        std::cout << "SUPER ScavTrap " << this->_name << " has not enough energy to attack !" << std::endl;
     return ;
 }

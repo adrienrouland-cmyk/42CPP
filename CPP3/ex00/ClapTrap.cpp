@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 10:49:41 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/18 19:35:42 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/18 19:49:03 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void    ClapTrap::attack(const std::string& target)
         this->_energyPoints--;
     }
     else
-        std::cout << "ClapTrap " << this->_name << " has not enough energy to attack !";
+        std::cout << "ClapTrap " << this->_name << " has not enough energy to attack !" << std::endl;;
     return ;
 }
 // Doit faire perdre. la target attackdamage, mais pas faisable dans cette classe car on a que le std::string& target
@@ -84,7 +84,7 @@ void    ClapTrap::beRepaired(unsigned int amount)
         this->_hitPoints += amount;
     }
     else
-        std::cout << "ClapTrap " << this->_name << " has not enough energy to repair !";    
+        std::cout << "ClapTrap " << this->_name << " has not enough energy to repair !" << std::endl;    
     return ;
 }
 
