@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 17:54:55 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/17 21:08:08 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/18 09:44:58 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ class Point
         Point &operator=(Point const &rhs);
 
         Point(float const z1, float const z2);
-        float   getX(void) const;
-        float   getY(void) const;
-        static float   getAire(Point const a, Point const b, Point const c);
-        static bool bsp(Point const a, Point const b, Point const c, Point const point);
+        Fixed   getX(void) const;
+        Fixed   getY(void) const;
+        static Fixed   getAire(Point const a, Point const b, Point const c);
     private:
         Fixed const _x;
         Fixed const _y;
 };
+
+bool bsp(Point const a, Point const b, Point const c, Point const point);
 
 #endif
