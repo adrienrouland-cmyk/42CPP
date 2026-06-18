@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 10:49:41 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/18 19:35:42 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/18 19:35:15 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ ClapTrap::ClapTrap(std::string name) :
 {
     std::cout << "ClapTrap " << this->_name << " is born with " << _hitPoints << " hitPoints, " 
         << _energyPoints << " energyPoints, and " << _attackDamage 
-        << " attackDamage" << std::endl;
+            << " attackDamage" << std::endl;
 }
 
 ClapTrap::~ClapTrap(void)
@@ -108,4 +108,19 @@ std::string    ClapTrap::getName(void) const
 unsigned int     ClapTrap::getAttackDamage(void) const
 {
     return this->_attackDamage;
+}
+
+void        ClapTrap::setHitPoints(unsigned int points)
+{
+    this->_hitPoints = points;
+}
+
+void        ClapTrap::setEnergyPoints(unsigned int points)
+{
+    this->_energyPoints = points;
+}
+
+void        ClapTrap::setAttackDamage(unsigned int damage)
+{
+    this->_attackDamage = damage;
 }

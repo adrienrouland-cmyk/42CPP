@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 10:49:41 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/18 17:52:29 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/18 19:35:37 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,14 @@ ClapTrap::ClapTrap(ClapTrap const &src)
 
 ClapTrap&   ClapTrap::operator=(ClapTrap const &rhs)
 {
-    std::cout << this->_name << " is claptrap assigned to " << rhs.getName() << std::endl;
-    this->_name = rhs.getName();
-    this->_attackDamage = rhs.getAttackDamage();
-    this->_hitPoints = rhs.getHitPoints();
-    this->_energyPoints = rhs.getEnergyPoints();
+    std::cout << "Claptrap assignement to " << rhs.getName() << std::endl;
+    if (this != &rhs)
+    {
+        this->_name = rhs.getName();
+        this->_attackDamage = rhs.getAttackDamage();
+        this->_hitPoints = rhs.getHitPoints();
+        this->_energyPoints = rhs.getEnergyPoints();
+    }
     return *this;
 }
 
@@ -78,7 +81,7 @@ void    ClapTrap::beRepaired(unsigned int amount)
     {
         this->_energyPoints--;
         std::cout << "ClapTrap " << this->_name << " repairs itself of " << amount << " points" << std::endl;
-        this->_hitPoints++;
+        this->_hitPoints += amount;
     }
     else
         std::cout << "ClapTrap " << this->_name << " has not enough energy to repair !";    
