@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 18:00:50 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/18 19:41:12 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/18 23:25:36 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,11 @@ FragTrap::~FragTrap(void)
 
 FragTrap::FragTrap(FragTrap const &src) : ClapTrap(src)
 {
-    *this = src;
 }
-// Ici on se base sur le fait que j'ai crée un Constructeur ClapTrap vide
 
 FragTrap& FragTrap::operator=(FragTrap const &rhs)
 {
-    std::cout << "Fragtrap assignement to " << rhs.getName() << std::endl;
+    std::cout << "FragTrap assignment to " << rhs.getName() << std::endl;
     if (this != &rhs)
     {
         this->_name = rhs.getName();

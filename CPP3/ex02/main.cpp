@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 15:37:22 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/18 18:40:02 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/18 23:29:14 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ int main(void)
     trap.beRepaired(1);
     std::cout << "ClapTrap hitpoint = " << trap.getHitPoints() << std::endl;
     trap.takeDamage(11);
-    std::cout << "ClapTrap hitpoint = " << trap.getHitPoints() << std::endl; 
+    std::cout << "ClapTrap hitpoint = " << trap.getHitPoints() << std::endl;
+    trap.beRepaired(20);
+    trap.attack("méchant");    
     
     std::cout << std::endl << std::endl;
 
@@ -47,8 +49,10 @@ int main(void)
     std::cout << "fragTrap hitpoint = " << frag.getHitPoints() << std::endl;
     frag.beRepaired(1);
     std::cout << "fragTrap hitpoint = " << frag.getHitPoints() << std::endl;
-    frag.takeDamage(11);
+    frag.takeDamage(200);
     std::cout << "fragTrap hitpoint = " << frag.getHitPoints() << std::endl; 
+    frag.beRepaired(20);
+    frag.attack("impossible");
 
     std::cout << std::endl << std::endl;
     

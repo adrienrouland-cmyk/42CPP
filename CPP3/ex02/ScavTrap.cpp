@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 16:56:33 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/18 19:47:46 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/18 23:21:19 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,11 @@ ScavTrap::~ScavTrap(void)
 
 ScavTrap::ScavTrap(ScavTrap const &src) : ClapTrap(src)
 {
-    *this = src;
-    return ;
 }
 
 ScavTrap& ScavTrap::operator=(ScavTrap const &rhs)
 {
-    std::cout << "Scavtrap assignement to " << rhs.getName() << std::endl;
+    std::cout << "ScavTrap assignment to " << rhs.getName() << std::endl;
     if (this != &rhs)
     {
         this->_name = rhs.getName();
@@ -58,11 +56,13 @@ void    ScavTrap::guardGate(void) const
 
 void    ScavTrap::attack(const std::string& target)
 {
-    if (this->_energyPoints > 0)
+    if (this->_energyPoints > 0 && this->_hitPoints > 0)
     {
         std::cout << "SUPER ScavTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage" << std::endl;
         this->_energyPoints--;
     }
+    else if (this->_hitPoints <= 0)
+        std::cout << "SUPER ScavTrap " << this->_name << " has not enough hitPoints to attack !" << std::endl;
     else
         std::cout << "SUPER ScavTrap " << this->_name << " has not enough energy to attack !" << std::endl;
     return ;
