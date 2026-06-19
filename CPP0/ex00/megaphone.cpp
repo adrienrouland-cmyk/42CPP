@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 18:20:39 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/04 19:38:12 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/19 19:17:04 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	main(int argc, char **argv)
 				std::cout << (char)std::toupper(argv[i][j]);
 				j++;
 			}
-			std::cout << std::endl;
 			i++;
 		}
+		std::cout << std::endl;
 	}
 	else
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" 

@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 19:42:00 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/08 17:47:42 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/19 19:05:28 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(void)
 	std::cout << "*************************************\n" << std::endl;
 	while (str != "EXIT")
 	{
-		str = get_line("- Please enter your next command : ");
+		str = get_line("- Please enter your next command (ADD, SEARCH, EXIT): ");
 		if (str == "ADD")
 			phonebook.AddContact();
 		else if (str == "SEARCH")
