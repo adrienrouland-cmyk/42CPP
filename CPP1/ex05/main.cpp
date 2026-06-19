@@ -5,24 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/18 15:37:22 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/18 23:26:23 by arouland         ###   ########.fr       */
+/*   Created: 2026/06/11 19:42:44 by arouland          #+#    #+#             */
+/*   Updated: 2026/06/15 22:22:06 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
-#include <iostream>
+#include "Harl.hpp"
 
 int main(void)
 {
-    ClapTrap trap("trap");
-    trap.attack("méchant");
-    trap.takeDamage(1);
-    std::cout << "ClapTrap hitpoint = " << trap.getHitPoints() << std::endl;
-    trap.beRepaired(1);
-    std::cout << "ClapTrap hitpoint = " << trap.getHitPoints() << std::endl;
-    trap.takeDamage(11);
-    std::cout << "ClapTrap hitpoint = " << trap.getHitPoints() << std::endl;
-    trap.beRepaired(20);
-    trap.attack("méchant");    
+    Harl harl;
+    harl.complain("DEBUG");
+    harl.complain("INFO");
+    harl.complain("WARNING");
+    harl.complain("ERROR");
+    harl.complain("TEST");
 }
+

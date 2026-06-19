@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 15:37:22 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/18 17:48:14 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/18 23:28:14 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int main(void)
     std::cout << "ClapTrap hitpoint = " << trap.getHitPoints() << std::endl;
     trap.takeDamage(11);
     std::cout << "ClapTrap hitpoint = " << trap.getHitPoints() << std::endl; 
+    trap.beRepaired(20);
+    trap.attack("méchant");    
     
     std::cout << std::endl << std::endl;
 
@@ -36,6 +38,8 @@ int main(void)
     std::cout << "ClapTrap hitpoint = " << trap2.getHitPoints() << std::endl;
     trap2.takeDamage(11);
     std::cout << "ClapTrap hitpoint = " << trap2.getHitPoints() << std::endl; 
+    trap2.beRepaired(20);
+    trap2.attack("méchant");    
     
     std::cout << std::endl << std::endl;
 
@@ -47,8 +51,10 @@ int main(void)
     std::cout << "ScavTrap hitpoint = " << scav.getHitPoints() << std::endl;
     scav.beRepaired(1);
     std::cout << "ScavTrap hitpoint = " << scav.getHitPoints() << std::endl;
-    scav.takeDamage(11);
+    scav.takeDamage(200);
     std::cout << "ScavTrap hitpoint = " << scav.getHitPoints() << std::endl; 
+    scav.beRepaired(20);
+    scav.attack("méchant");    
 
     std::cout << std::endl << std::endl;
     
@@ -61,5 +67,20 @@ int main(void)
     std::cout << "ScavTrap hitpoint = " << scav2.getHitPoints() << std::endl;
     scav2.takeDamage(11);
     std::cout << "ScavTrap hitpoint = " << scav2.getHitPoints() << std::endl; 
+    scav2.beRepaired(20);
+    scav2.attack("méchant");   
 
+    std::cout << std::endl << std::endl;
+    
+    ScavTrap scav3(scav);
+    scav3 = scav;
+    scav3.attack("méchant2");
+    scav3.takeDamage(1);
+    std::cout << "ScavTrap hitpoint = " << scav3.getHitPoints() << std::endl;
+    scav3.beRepaired(1);
+    std::cout << "ScavTrap hitpoint = " << scav3.getHitPoints() << std::endl;
+    scav3.takeDamage(11);
+    std::cout << "ScavTrap hitpoint = " << scav3.getHitPoints() << std::endl; 
+    scav3.beRepaired(20);
+    scav3.attack("méchant");   
 }
