@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/04 18:20:39 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/19 19:17:04 by arouland         ###   ########.fr       */
+/*   Created: 2026/06/19 18:12:20 by arouland          #+#    #+#             */
+/*   Updated: 2026/06/19 18:27:39 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cctype>
+#ifndef ANIMAL_H
+# define ANIMAL_H
 
-int	main(int argc, char **argv)
+#include <string>
+
+class Animal
 {
-	int		i;
-	int		j;
-	
-	i = 1;
-	if (argc != 1)
-	{
-		while (argv[i])
-		{
-			j = 0;
-			while (argv[i][j])
-			{
-				std::cout << (char)std::toupper(argv[i][j]);
-				j++;
-			}
-			i++;
-		}
-		std::cout << std::endl;
-	}
-	else
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" 
-			<< std::endl;
-}
+    public:
+        Animal(void);
+        ~Animal(void);
+        Animal(Animal const &src);
+        Animal& operator=(Animal const &rhs);
+        void    makeSound(void) const;
+    protected:
+        std::string _type;
+};
+
+#endif
