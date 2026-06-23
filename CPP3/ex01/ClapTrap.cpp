@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 10:49:41 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/18 23:19:22 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/23 17:09:26 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@ ClapTrap::ClapTrap(std::string name) :
     std::cout << "ClapTrap " << this->_name << " is born with " << _hitPoints << " hitPoints, " 
         << _energyPoints << " energyPoints, and " << _attackDamage 
             << " attackDamage" << std::endl;
+}
+
+ClapTrap::ClapTrap(void) : 
+    _name("default"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+{
+    std::cout << "ClapTrap " << this->_name << " is born with " << _hitPoints << " hitPoints, " 
+        << _energyPoints << " energyPoints, and " << _attackDamage 
+        << " attackDamage" << std::endl;
 }
 
 ClapTrap::~ClapTrap(void)

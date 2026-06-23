@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 10:49:42 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/18 17:50:52 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/23 17:09:04 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ class ClapTrap
 {
     public:
         ClapTrap(std::string name);
+		ClapTrap(void);
         ~ClapTrap(void);
         ClapTrap(ClapTrap const &src);
         ClapTrap &operator=(ClapTrap const &rhs);
