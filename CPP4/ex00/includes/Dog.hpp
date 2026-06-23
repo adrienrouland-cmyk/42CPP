@@ -1,0 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/19 19:39:06 by arouland          #+#    #+#             */
+/*   Updated: 2026/06/19 19:54:31 by arouland         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef DOG_H
+# define DOG_H
+
+#include "Animal.hpp"
+
+class Dog : public Animal
+{
+    public:
+        Dog(void);
+        ~Dog(void);
+        Dog(Dog const &src);
+        Dog &operator=(Dog const &rhs);
+        void    makeSound(void) const;
+};
+
+#endif
