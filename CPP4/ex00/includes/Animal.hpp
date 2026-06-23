@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 18:12:20 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/19 18:27:39 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/19 21:13:19 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ class Animal
 {
     public:
         Animal(void);
-        ~Animal(void);
+        virtual ~Animal(void);
         Animal(Animal const &src);
         Animal& operator=(Animal const &rhs);
-        void    makeSound(void) const;
+        virtual void    makeSound(void) const;
     protected:
         std::string _type;
 };

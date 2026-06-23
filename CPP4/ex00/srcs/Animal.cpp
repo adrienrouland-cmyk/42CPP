@@ -6,11 +6,11 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 18:12:22 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/19 18:28:25 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/19 19:53:23 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "../includes/Animal.hpp"
 #include <iostream>
 
 Animal::Animal(void) : _type("Animal")
