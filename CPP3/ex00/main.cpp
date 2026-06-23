@@ -5,26 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/16 19:23:46 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/17 12:09:41 by arouland         ###   ########.fr       */
+/*   Created: 2026/06/18 15:37:22 by arouland          #+#    #+#             */
+/*   Updated: 2026/06/18 23:26:23 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
-
+#include "ClapTrap.hpp"
 #include <iostream>
 
-int     main(void) 
+int main(void)
 {
-    Fixed a;
-    Fixed b(a);
-    Fixed c;
-
-    c = b;
-    
-    std::cout << a.getRawBits() << std::endl;
-    std::cout << b.getRawBits() << std::endl;
-    std::cout << c.getRawBits() << std::endl;
-    
-    return 0;
+    ClapTrap trap("trap");
+    trap.attack("méchant");
+    trap.takeDamage(1);
+    std::cout << "ClapTrap hitpoint = " << trap.getHitPoints() << std::endl;
+    trap.beRepaired(1);
+    std::cout << "ClapTrap hitpoint = " << trap.getHitPoints() << std::endl;
+    trap.takeDamage(11);
+    std::cout << "ClapTrap hitpoint = " << trap.getHitPoints() << std::endl;
+    trap.beRepaired(20);
+    trap.attack("méchant");    
 }
