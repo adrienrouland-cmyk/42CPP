@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 19:46:15 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/23 19:01:19 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/23 19:17:03 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int main(void)
 	j->makeSound();
 	meta->makeSound();
 
+	delete meta;
+	delete j;
+	delete i;
+	
     WrongAnimal *d = new WrongCat();
     d->makeSound();
 

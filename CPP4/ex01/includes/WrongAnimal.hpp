@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 19:57:38 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/19 19:58:14 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/23 19:15:40 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class WrongAnimal
 {
     public:
         WrongAnimal(void);
-        ~WrongAnimal(void);
+        virtual ~WrongAnimal(void);
         WrongAnimal(WrongAnimal const &src);
         WrongAnimal& operator=(WrongAnimal const &rhs);
         void    makeSound(void) const;
