@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 19:23:48 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/17 17:10:19 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/23 12:20:42 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ class Fixed
 		static Fixed& max(Fixed &f1, Fixed &f2);
 		static const Fixed& max(Fixed const &f1, Fixed const &f2);
 	private:
-		int	_value; // valeur multipliée par 256
+		int	_value;
 		static const int _nbFractBits;
 };
 

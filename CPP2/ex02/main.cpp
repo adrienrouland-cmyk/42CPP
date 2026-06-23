@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 19:23:46 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/17 17:48:51 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/23 12:38:32 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,15 @@ int     main(void)
     
     std::cout << "Max = " << Fixed::max( a, b ) << std::endl;
     std::cout << "Min = " << Fixed::min( a, b ) << std::endl;
+	std::cout << std::boolalpha << "a < b : " << (a < b)  << std::endl;
+	std::cout << std::boolalpha << "a > b : " << (a > b)  << std::endl;
+
+	Fixed i(a);
+	std::cout << std::boolalpha << "a <= i : " << (a <= i)  << std::endl;
+	std::cout << std::boolalpha << "a >= i : " << (a >= i)  << std::endl;
 
     std::cout << std::endl;
-    std::cout << "Autres tests" << std::endl << std::endl;
+    std::cout << "Other tests" << std::endl << std::endl;
 
     std::cout << a << std::endl;
     std::cout << --a << std::endl;
@@ -59,6 +65,11 @@ int     main(void)
     Fixed g(25);
     Fixed h(0.5f);
     std::cout << g << " / " << h << " = " << g / h << std::endl;
+
+	Fixed j(0.25f);
+	Fixed k(0.25f);
+	std::cout << j << " * " << k << " = " << j * k << std::endl;
+	std::cout << j << " / " << k << " = " << j / k << std::endl;
 
     return 0;
 }
