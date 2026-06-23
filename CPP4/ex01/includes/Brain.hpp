@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/19 19:46:15 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/23 19:26:29 by arouland         ###   ########.fr       */
+/*   Created: 2026/06/23 19:23:09 by arouland          #+#    #+#             */
+/*   Updated: 2026/06/23 19:25:47 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/Animal.hpp"
-#include "includes/Dog.hpp"
-#include "includes/Cat.hpp"
-#include "includes/WrongAnimal.hpp"
-#include "includes/WrongCat.hpp"
-#include <iostream>
+#ifndef BRAIN_H
+# define BRAIN_H
+#include <string>
 
-int main(void)
+class Brain
 {
-   	
-}
+	public:
+		Brain(void);
+		~Brain(void);
+		Brain(Brain const &src);
+		Brain& operator=(Brain const &rhs);
+	private:
+		std::string ideas[100];
+};
+
+#endif
