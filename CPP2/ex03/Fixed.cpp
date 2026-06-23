@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 19:23:51 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/17 17:51:19 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/23 13:53:52 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ Fixed   Fixed::operator-(Fixed const &rhs) const
 Fixed   Fixed::operator*(Fixed const &rhs) const
 {
     Fixed temp;
-    temp.setRawBits((roundf(((float)this->_value * (float)rhs.getRawBits())  / (1 << Fixed::_nbFractBits))));
+    temp.setRawBits((roundf(((double)this->_value * (double)rhs.getRawBits())  / (1 << Fixed::_nbFractBits))));
     return (temp);
 }
 
@@ -115,7 +115,7 @@ Fixed   Fixed::operator/(Fixed const &rhs) const
     if (rhs.getRawBits() == 0)
         return Fixed(0);
     Fixed temp;
-    temp.setRawBits((roundf(((float)this->_value * (1 << Fixed::_nbFractBits) / (float)rhs.getRawBits()))));
+    temp.setRawBits((roundf(((double)this->_value * (1 << Fixed::_nbFractBits) / (double)rhs.getRawBits()))));
     return (temp);
 }
 
