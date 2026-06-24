@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 19:45:10 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/19 19:49:09 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/24 13:09:59 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CAT_H
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat : public Animal
 {
@@ -23,6 +24,9 @@ class Cat : public Animal
         Cat(Cat const &src);
         Cat &operator=(Cat const &rhs);
         void    makeSound(void) const;
+    private:
+        Brain   *_brain;
+        
 };
 
 #endif
