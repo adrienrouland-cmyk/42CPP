@@ -6,7 +6,8 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 21:32:40 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/29 21:32:41 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/29 21:42:21 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/ScalarConverter.hpp"

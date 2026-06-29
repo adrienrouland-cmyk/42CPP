@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 21:32:35 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/29 21:37:20 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/29 21:42:04 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
 
 class ScalarConverter 
 {
-    public:
+    private:
         ScalarConverter(void);
         ~ScalarConverter(void);
         ScalarConverter(ScalarConverter const &src);
         ScalarConverter& operator=(ScalarConverter const &rhs);
-        
+    public:
         static void convert(std::string str);
 };
+// Ne doit pas être instantiate, donc canonique private
+
 
 #endif
