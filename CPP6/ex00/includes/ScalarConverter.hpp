@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 21:32:35 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/29 21:42:04 by arouland         ###   ########.fr       */
+/*   Updated: 2026/06/30 17:41:30 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 # define SCALARCONVERTER_H
 
 #include <string>
+#include <iostream>
+#include <iomanip>
+#include <cstdlib>
+#include <limits>
+#include <climits>
+
+bool	is_int(std::string input);
+bool	is_float(std::string input);
+bool	is_double(std::string input);
 
 class ScalarConverter 
 {
@@ -23,9 +32,8 @@ class ScalarConverter
         ScalarConverter(ScalarConverter const &src);
         ScalarConverter& operator=(ScalarConverter const &rhs);
     public:
-        static void convert(std::string str);
+        static void convert(std::string input);
 };
 // Ne doit pas être instantiate, donc canonique private
-
 
 #endif
