@@ -5,9 +5,6 @@ CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 
 SRCS = main.cpp \
 		srcs/Base.cpp \
-		srcs/A.cpp \
-		srcs/B.cpp \
-		srcs/C.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
