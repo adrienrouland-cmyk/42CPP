@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 21:32:40 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/30 17:59:34 by arouland         ###   ########.fr       */
+/*   Updated: 2026/07/02 11:54:41 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	displayNegInf(void)
 
 void	displayFromChar(char c)
 {
-	std::cout << "char: " << c << std::endl;
+	std::cout << "char: '" << c << "'" << std::endl;
 	std::cout << "int: " << static_cast<int>(c) << std::endl;
 	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(c) << "f" << std::endl;
 	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(c) << std::endl;
@@ -66,9 +66,9 @@ void	displayFromInt(int n)
 	if (n < 0 || n > 255)
 		std::cout << "char: impossible" << std::endl;
 	else if (n < 32 || n > 126)
-		std::cout << "char: non printable" << std::endl;
+		std::cout << "char: Non displayable" << std::endl;
 	else
-		std::cout << "char: " << static_cast<char>(n) << std::endl;
+		std::cout << "char: '" << static_cast<char>(n) << "'" << std::endl;
 	std::cout << "int: " << n << std::endl;
 	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(n) << "f" << std::endl;
 	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(n) << std::endl;
@@ -76,14 +76,14 @@ void	displayFromInt(int n)
 
 void	displayFromFloat(std::string input)
 {
-	float f = strtod(input.c_str(), NULL);
+	float f = strtof(input.c_str(), NULL);
 	
 	if (f < 0.0f || f > 255.0f)
 		std::cout << "char: impossible" << std::endl;
 	else if (f < 32.0f || f > 126.0f)
-		std::cout << "char: non printable" << std::endl;
+		std::cout << "char: Non displayable" << std::endl;
 	else
-		std::cout << "char: " << static_cast<char>(f) << std::endl;
+		std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
 	if (f < std::numeric_limits<int>::min() || f > std::numeric_limits<int>::max())
 		std::cout << "int: impossible" << std::endl;
 	else
@@ -99,9 +99,9 @@ void	displayFromDouble(std::string input)
 	if (d < 0.0 || d > 255.0)
 		std::cout << "char: impossible" << std::endl;
 	else if (d < 32.0 || d > 126.0)
-		std::cout << "char: non printable" << std::endl;
+		std::cout << "char: Non displayable" << std::endl;
 	else
-		std::cout << "char: " << static_cast<char>(d) << std::endl;
+		std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
 	if (d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max())
 		std::cout << "int: impossible" << std::endl;
 	else

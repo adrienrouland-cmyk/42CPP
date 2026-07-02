@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 21:32:35 by arouland          #+#    #+#             */
-/*   Updated: 2026/06/30 17:41:30 by arouland         ###   ########.fr       */
+/*   Updated: 2026/07/02 11:59:03 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <cstdlib>
 #include <limits>
 #include <climits>
+#include <cerrno>
 
 bool	is_int(std::string input);
 bool	is_float(std::string input);
