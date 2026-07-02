@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 18:55:58 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/02 19:55:54 by arouland         ###   ########.fr       */
+/*   Updated: 2026/07/02 22:37:14 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ITER_HPP
 
 #include <stddef.h>
+#include <iostream>
 
 template<typename T, typename U>
 void iter(T *arr, size_t const length, U func)

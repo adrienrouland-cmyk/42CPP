@@ -6,13 +6,12 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 19:35:44 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/02 20:01:36 by arouland         ###   ########.fr       */
+/*   Updated: 2026/07/02 22:37:04 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
 #include <cstring>
-#include <iostream>
 #include <cctype>
 
 void toUpper(char &c)
@@ -37,8 +36,9 @@ int main(void)
 	::iter(str, strlen(str), toUpper);
 	std::cout << str << std::endl;
 
+	int const tabconst[] = {1, 2, 3};
 	int tab[] = {1, 2, 3};
-	::iter(tab, sizeof(tab)/sizeof(int), printInt);
+	::iter(tabconst, sizeof(tabconst)/sizeof(int), printInt);
 	std::cout << std::endl;
 	::iter(tab, sizeof(tab)/sizeof(int), plusUn);
 	::iter(tab, sizeof(tab)/sizeof(int), printInt);
