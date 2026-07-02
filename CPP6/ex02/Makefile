@@ -1,0 +1,30 @@
+NAME = base
+
+CPP = c++
+CPPFLAGS = -Wall -Werror -Wextra -std=c++98
+
+SRCS = main.cpp \
+		srcs/Base.cpp \
+		srcs/A.cpp \
+		srcs/B.cpp \
+		srcs/C.cpp
+
+OBJS = $(SRCS:.cpp=.o)
+
+all : $(NAME)
+
+$(NAME): $(OBJS)
+	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
+
+%.o:%.cpp
+	$(CPP) $(CPPFLAGS) -c $< -o $@
+
+clean:
+	rm -rf $(OBJS)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
