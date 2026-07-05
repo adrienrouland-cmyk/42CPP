@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/02 22:40:30 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/06 01:32:43 by arouland         ###   ########.fr       */
+/*   Updated: 2026/07/06 01:59:03 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,3 +41,5 @@ class Array
 };
 
 #endif
+
+#include "Array.tpp"
