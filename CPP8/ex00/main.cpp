@@ -6,12 +6,13 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 10:40:12 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/06 11:04:48 by arouland         ###   ########.fr       */
+/*   Updated: 2026/07/06 12:00:27 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "easyfind.hpp"
 #include <list>
+#include <vector>
 #include <iostream>
 
 int main(void)
