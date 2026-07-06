@@ -6,12 +6,11 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 22:58:13 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/06 01:53:55 by arouland         ###   ########.fr       */
+/*   Updated: 2026/07/06 10:41:59 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
-#include "Array.tpp"
 #include <iostream>
 #include <iomanip>
 
