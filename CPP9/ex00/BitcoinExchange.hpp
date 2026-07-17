@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 12:02:28 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/17 13:39:24 by arouland         ###   ########.fr       */
+/*   Updated: 2026/07/17 16:17:40 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 #include <map>
 #include <string>
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include <cstddef>
+#include <cctype> // std::isdigit
+#include <cstdlib> // atoi
 
 class BitcoinExchange {
     public:
@@ -45,6 +48,7 @@ class BitcoinExchange {
     private:
         std::map<std::string, float> _database;
         static std::string trim(const std::string &str);
+        static bool isValidDate(const std::string &date);
 };
 
 #endif
