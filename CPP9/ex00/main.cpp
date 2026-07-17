@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 12:03:01 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/17 16:27:37 by arouland         ###   ########.fr       */
+/*   Updated: 2026/07/17 16:42:27 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ int main(int argc, char **argv)
 
     if (btc.loadDatabase("data.csv"))
         btc.processInput(argv[1]);
+    return 0;
 }

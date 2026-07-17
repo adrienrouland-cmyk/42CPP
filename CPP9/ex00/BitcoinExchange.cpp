@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 12:13:23 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/17 16:27:46 by arouland         ###   ########.fr       */
+/*   Updated: 2026/07/17 16:46:24 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void BitcoinExchange::processInput(const std::string &filename)
         
         if (!BitcoinExchange::isValidDate(date))
         {
-            std::cerr << "Error: bad input => " << date << std::endl;
+            std::cerr << "Error: bad input => " << line << std::endl;
             continue;
         }
         
