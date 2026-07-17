@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 12:02:28 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/17 16:17:40 by arouland         ###   ########.fr       */
+/*   Updated: 2026/07/17 16:27:14 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class BitcoinExchange {
         BitcoinExchange(BitcoinExchange const &src);
         BitcoinExchange& operator=(BitcoinExchange const &rhs);
 
-        void loadDatabase(const std::string &filename); // load.csv et charge _db;
+        bool loadDatabase(const std::string &filename); // load.csv et charge _db;
         void processInput(const std::string &filename); // load la base input.txt
 
         /* DEBUG */

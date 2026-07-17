@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 12:13:23 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/17 16:17:14 by arouland         ###   ########.fr       */
+/*   Updated: 2026/07/17 16:27:46 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ BitcoinExchange& BitcoinExchange::operator=(BitcoinExchange const &rhs)
 {
     if (this != &rhs)
     {
-
+        this->_database = rhs._database;
     }
     return *this;
 }
@@ -46,13 +46,13 @@ BitcoinExchange& BitcoinExchange::operator=(BitcoinExchange const &rhs)
 - valeur à droite -> exchange rate -> convertir en float
 - met clé + valeur dans notre _db
 */
-void BitcoinExchange::loadDatabase(const std::string &filename)
+bool BitcoinExchange::loadDatabase(const std::string &filename)
 {
     std::ifstream file(filename.c_str());
     if (!file.is_open()) 
     {
         std::cerr << "Error: cound not open file" << std::endl;
-        return ;
+        return false;
     }
 
     std::string line;
@@ -84,6 +84,7 @@ void BitcoinExchange::loadDatabase(const std::string &filename)
         this->_database[strDate] = value;
     }
     file.close();
+    return true;
 }
 
 /*
@@ -126,7 +127,7 @@ void BitcoinExchange::processInput(const std::string &filename)
         
         if (!BitcoinExchange::isValidDate(date))
         {
-            std::cerr << "Error: bad input => " << line << std::endl;
+            std::cerr << "Error: bad input => " << date << std::endl;
             continue;
         }
         
