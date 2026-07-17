@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 12:03:01 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/17 13:21:46 by arouland         ###   ########.fr       */
+/*   Updated: 2026/07/17 13:51:34 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int main(int argc, char **argv)
     BitcoinExchange btc;
 
     btc.loadDatabase(argv[1]);
-    btc.printDB();
+    // btc.printDB();
+    std::cout << "rate for 2022-03-04 (39141.2) = " << btc.getRateForDate("2022-03-04") << std::endl;
 }

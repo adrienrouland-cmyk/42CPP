@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 12:13:23 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/17 13:23:27 by arouland         ###   ########.fr       */
+/*   Updated: 2026/07/17 13:50:29 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void BitcoinExchange::loadDatabase(const std::string &filename)
             continue;
         }
 
-        std::string strDate = line.substr(0, pos);
-        std::string strValue = line.substr(pos + 1);
+        std::string strDate = BitcoinExchange::trim(line.substr(0, pos));
+        std::string strValue = BitcoinExchange::trim(line.substr(pos + 1));
 
         float value = std::stof(strValue); // à voir si droit d'utiliser stof ?
         this->_database[strDate] = value;
@@ -103,6 +103,24 @@ void BitcoinExchange::processInput(const std::string &filename)
 */
 float BitcoinExchange::getRateForDate(const std::string &date) const
 {
-    (void)date;
-    return 0;
+    std::map<std::string, float>::const_iterator it;
+
+    it = _database.lower_bound(date);
+    if (it != _database.end() && it->first == date) // date exacte
+        return it->second;
+
+    else if (it == _database.begin())
+        throw std::runtime_error("Error: no earlier date found");
+
+    return (--it)->second; // prend date immédiatemment inférieure.
+}
+
+std::string BitcoinExchange::trim(const std::string &str)
+{
+    size_t start = str.find_first_not_of(" ");
+    size_t end = str.find_last_not_of(" ");
+
+    if (start == std::string::npos)
+        return "";
+    return str.substr(start, end - start + 1);
 }

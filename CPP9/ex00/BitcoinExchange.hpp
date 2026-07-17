@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 12:02:28 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/17 13:29:13 by arouland         ###   ########.fr       */
+/*   Updated: 2026/07/17 13:39:24 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ class BitcoinExchange {
             for (std::map<std::string, float>::const_iterator it = _database.begin();
             it != _database.end(); ++it)
             {
-                std::cout << "[KEY] " << it->first << " : [VALUE] " << it->second << std::endl;
+                std::cout << it->first << ":" << it->second << std::endl;
             }
         }
         /*********/
@@ -44,6 +44,7 @@ class BitcoinExchange {
         float getRateForDate(const std::string &date) const; // renvoie l'exchange rate pour la date, ou erreur
     private:
         std::map<std::string, float> _database;
+        static std::string trim(const std::string &str);
 };
 
 #endif
