@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 12:47:35 by arouland          #+#    #+#             */
-/*   Updated: 2026/08/06 17:39:14 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/06 18:14:31 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <vector>
 #include <deque>
 #include <string>
+#include <utility>
 
 #include <iostream>
 #include <sstream>
@@ -39,9 +40,10 @@ class PmergeMe
         void    sortVector(std::vector<int> &container);
         void    sortDeque(std::deque<int> &container);
     private:
-
         std::vector<int>    _vector;
         std::deque<int>     _deque;
+
+        std::vector<std::pair<int, int> > createVectorPairs(const std::vector<int> &container) const;
 };
 
 #endif

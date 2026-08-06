@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 12:47:36 by arouland          #+#    #+#             */
-/*   Updated: 2026/08/06 17:42:30 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/06 18:15:08 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,26 @@ void    PmergeMe::printBefore() const
         std::cout << " " << *it;
         
     std::cout << std::endl;
+}
+
+std::vector<std::pair<int, int> > PmergeMe::createVectorPairs(const std::vector<int> &container) const
+{
+    std::vector<std::pair<int, int> > pairs;
+
+    for (std::size_t i = 0; i + 1 < container.size(); i += 2)
+    {
+        int first = container[i];
+        int second = container[i + 1];
+
+        if (first <= second)
+            pairs.push_back(std::make_pair(first, second));
+        else
+            pairs.push_back(std::make_pair(second, first));
+    }
+    return pairs;
+}
+
+void    sortVector(std::vector<int> &container)
+{
+    (void)container;
 }
