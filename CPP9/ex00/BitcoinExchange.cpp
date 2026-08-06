@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 12:13:23 by arouland          #+#    #+#             */
-/*   Updated: 2026/08/06 12:18:54 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/06 12:45:49 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ bool BitcoinExchange::loadDatabase(const std::string &filename)
         // >> fait la conversion vers le type de la variable
         //.eof() -> check qu'il ne reste aucun caractère parasite après le nombre.
         float value;
-        if (!(ssValue >> value) || !ssValue.eof())
+        if (!(ssValue >> value) || !ssValue.eof()) // stringstream convertit en float
         {
             std::cerr << "Error: invalid float value in database => " << strValue << std::endl;
             continue;
@@ -106,7 +106,7 @@ ne stock pas les valeurs du fichier d'entrée -> le fichier est traité ligne pa
 */
 void BitcoinExchange::processInput(const std::string &filename)
 {
-    std::ifstream file (filename.c_str());
+    std::ifstream file(filename.c_str());
     if (!file.is_open())
     {
         std::cerr << "Error: could not open file" << std::endl;
@@ -186,7 +186,7 @@ float BitcoinExchange::getRateForDate(const std::string &date) const
 {
     std::map<std::string, float>::const_iterator it;
 
-    it = _database.lower_bound(date);
+    it = _database.lower_bound(date); // return 1er elem dont date >= date recherchée
     if (it != _database.end() && it->first == date) // date exacte
         return it->second;
 
