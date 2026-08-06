@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 12:47:36 by arouland          #+#    #+#             */
-/*   Updated: 2026/08/06 18:52:47 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/06 19:17:35 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,12 +139,34 @@ void    PmergeMe::fordJohnsonVector(std::vector<int> & container)
 
     std::vector<std::pair<int, int> > pairs = createVectorPairs(container);
 
-    std::vector<int> largeValues;
-    largeValues.reserve(pairs.size());
+    std::vector<int> supValues;
+    supValues.reserve(pairs.size());
     for (std::vector<std::pair<int, int> >::const_iterator it = pairs.begin(); it != pairs.end(); ++it)
     {
-        largeValues.push_back(it->second);
+        supValues.push_back(it->second);
     }
 
-    fordJohnsonVector(largeValues); // récursif
+    this->fordJohnsonVector(supValues); // récursif
+
+    std::vector<std::pair<int, int> > orderedPairs;
+    std::vector<std::pair<int, int> > remainingPairs = pairs;
+    
+    orderedPairs.reserve(pairs.size());
+    for (std::vector<int>::const_iterator supIt = supValues.begin(); supIt != supValues.end(); ++supIt)
+    {
+        for (std::vector<std::pair<int, int> >::iterator pairIt = remainingPairs.begin(); pairIt != remainingPairs.end(); ++pairIt)
+        {
+            if (pairIt->second == *supIt)
+            {
+                orderedPairs.push_back(*pairIt);
+                remainingPairs.erase(pairIt);
+                break;
+            }
+        }
+    }
+
+    if (orderedPairs.size() != pairs.size())
+        throw std::runtime_error("failed to reorder pairs");
+
+    pairs.swap(orderedPairs);
 }
