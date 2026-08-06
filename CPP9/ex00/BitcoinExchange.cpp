@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 12:13:23 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/17 16:46:24 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/06 12:18:54 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ BitcoinExchange& BitcoinExchange::operator=(BitcoinExchange const &rhs)
 - utilise des stream -> sépare gauche de la virugle -> date en std::string
 - valeur à droite -> exchange rate -> convertir en float
 - met clé + valeur dans notre _db
+
+erreurs :
+- bon header -> data value
+- cas plusieurs virgules, pas de virgules
+- dates -> split, gauche doit être date -> check deux tirets.
+- membre de droite est float valide ou int valide.
 */
 bool BitcoinExchange::loadDatabase(const std::string &filename)
 {
@@ -108,13 +114,20 @@ void BitcoinExchange::processInput(const std::string &filename)
     }
 
     std::string line;
-    std::getline(file, line);
+    bool        firstContentLine = true;
 
     while (std::getline(file, line))
     {
-        if (line.empty())
+        if (BitcoinExchange::trim(line).empty())
             continue;
         
+        if (firstContentLine)
+        {
+            firstContentLine = false;
+            if (BitcoinExchange::trim(line) == "date | value") // cas où première ligne en valeur
+                continue;
+        }
+
         size_t pos = line.find('|');
         if (pos == std::string::npos)
         {
@@ -185,8 +198,10 @@ float BitcoinExchange::getRateForDate(const std::string &date) const
 
 std::string BitcoinExchange::trim(const std::string &str)
 {
-    size_t start = str.find_first_not_of(" ");
-    size_t end = str.find_last_not_of(" ");
+    const std::string spaces = " \t\r\n\v\f";
+    
+    size_t start = str.find_first_not_of(spaces);
+    size_t end = str.find_last_not_of(spaces);
 
     if (start == std::string::npos)
         return "";
@@ -202,7 +217,7 @@ bool BitcoinExchange::isValidDate(const std::string &date)
     {
         if (pos == 4 || pos == 7)
             continue;
-        if (!std::isdigit(date[pos]))
+        if (!std::isdigit(static_cast<unsigned char>(date[pos])))
             return false;
     }
 
