@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 12:47:35 by arouland          #+#    #+#             */
-/*   Updated: 2026/08/06 18:14:31 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/06 18:35:44 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,16 @@ class PmergeMe
         void    fillVector(int argc, char **argv);
         void    fillDeque(int argc, char **argv);
         void    printBefore() const;
-        void    sortVector(std::vector<int> &container);
-        void    sortDeque(std::deque<int> &container);
+        void    sortVector();
+        void    sortDeque();
     private:
         std::vector<int>    _vector;
         std::deque<int>     _deque;
 
-        std::vector<std::pair<int, int> > createVectorPairs(const std::vector<int> &container) const;
+        std::vector<std::pair<int, int> >   createVectorPairs(const std::vector<int> &container) const;
+        void                                fordJohnsonVector(std::vector<int> &container);
+        std::deque<std::pair<int, int> >    createDequePairs(const std::deque<int> &container) const;
+        
 };
 
 #endif

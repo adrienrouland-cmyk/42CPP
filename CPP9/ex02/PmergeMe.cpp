@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 12:47:36 by arouland          #+#    #+#             */
-/*   Updated: 2026/08/06 18:15:08 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/06 18:52:47 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,24 @@ std::vector<std::pair<int, int> > PmergeMe::createVectorPairs(const std::vector<
     return pairs;
 }
 
-void    sortVector(std::vector<int> &container)
+void    PmergeMe::sortVector()
 {
-    (void)container;
+    this->fordJohnsonVector(this->_vector);
+}
+
+void    PmergeMe::fordJohnsonVector(std::vector<int> & container)
+{
+    if (container.size() <= 1)
+        return ;
+
+    std::vector<std::pair<int, int> > pairs = createVectorPairs(container);
+
+    std::vector<int> largeValues;
+    largeValues.reserve(pairs.size());
+    for (std::vector<std::pair<int, int> >::const_iterator it = pairs.begin(); it != pairs.end(); ++it)
+    {
+        largeValues.push_back(it->second);
+    }
+
+    fordJohnsonVector(largeValues); // récursif
 }

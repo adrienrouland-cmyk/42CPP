@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 12:51:39 by arouland          #+#    #+#             */
-/*   Updated: 2026/08/06 17:40:48 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/06 18:50:18 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int main(int argc, char **argv)
         sorter.fillVector(argc, argv);
         sorter.fillDeque(argc, argv);
         sorter.printBefore();
+        sorter.sortVector();
     }
     catch (const std::exception &e)
     {
