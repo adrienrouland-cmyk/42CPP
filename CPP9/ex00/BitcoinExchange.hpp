@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 12:02:28 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/17 16:47:31 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/07 18:37:17 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ class BitcoinExchange {
         void processInput(const std::string &filename); // load la base input.txt
         
     private:
-        std::map<std::string, float> _database;
+        std::map<std::string, double> _database;
         static std::string trim(const std::string &str);
         static bool isValidDate(const std::string &date);
-        float getRateForDate(const std::string &date) const; // renvoie l'exchange rate pour la date, ou erreur
+        double getRateForDate(const std::string &date) const; // renvoie l'exchange rate pour la date, ou erreur
 };
 
 #endif
