@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 12:47:35 by arouland          #+#    #+#             */
-/*   Updated: 2026/08/07 16:48:11 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/07 16:49:23 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 #include <limits>
 #include <cctype>
 #include <cstdlib>
+#include <ctime>
+#include <iomanip>
 
 class PmergeMe
 {
