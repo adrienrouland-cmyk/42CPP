@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 12:47:36 by arouland          #+#    #+#             */
-/*   Updated: 2026/08/07 16:44:13 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/07 17:05:20 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,8 @@ void    PmergeMe::printAfter() const
     std::cout << std::endl;
 }
 
+/************************************* VECTOR *************************************/
+
 std::vector<std::pair<int, int> > PmergeMe::createVectorPairs(const std::vector<int> &container) const
 {
     std::vector<std::pair<int, int> > pairs;
@@ -170,7 +172,7 @@ void    PmergeMe::fordJohnsonVector(std::vector<int> &container)
         sortedLargerValues.push_back(pairsIt->second);
 
     this->fordJohnsonVector(sortedLargerValues);
-    this->reorderPairsByLargerValues(pairs, sortedLargerValues);
+    this->reorderVectorPairsByLargerValues(pairs, sortedLargerValues);
 
     std::vector<int> result;
     result.reserve(container.size());
@@ -188,7 +190,7 @@ void    PmergeMe::fordJohnsonVector(std::vector<int> &container)
     container.swap(result);
 }
 
-void    PmergeMe::reorderPairsByLargerValues(std::vector<std::pair<int, int> > &pairs, const std::vector<int> &sortedLargerValues) const
+void    PmergeMe::reorderVectorPairsByLargerValues(std::vector<std::pair<int, int> > &pairs, const std::vector<int> &sortedLargerValues) const
 {
     for (std::size_t sortedIndex = 0; sortedIndex < sortedLargerValues.size(); ++sortedIndex)
     {
@@ -247,6 +249,130 @@ void    PmergeMe::insertVectorPendingSmallerElements(std::vector<int> &result, s
         std::size_t largerPosition = pendingSmallerValues[insertionOrder[i]].second;
 
         std::vector<int>::iterator insertionPosition = std::lower_bound(result.begin(), result.begin() + largerPosition, valueToInsert);
+        std::size_t insertedPosition = static_cast<std::size_t>(insertionPosition - result.begin());
+        result.insert(insertionPosition, valueToInsert);
+
+        // là faut augmenter les positions des partners qui sont après l'insertion pour faire + 1
+        for (std::size_t j = 0; j < pendingSmallerValues.size(); ++j)
+        {
+            if (pendingSmallerValues[j].second >= insertedPosition)
+                pendingSmallerValues[j].second++;
+        }
+    }
+}
+
+/************************************* DEQUE *************************************/
+
+std::deque<std::pair<int, int> > PmergeMe::createDequePairs(const std::deque<int> &container) const
+{
+    std::deque<std::pair<int, int> > pairs;
+
+    for (std::size_t i = 0; i + 1 < container.size(); i += 2)
+    {
+        int first = container[i];
+        int second = container[i + 1];
+
+        if (first <= second)
+            pairs.push_back(std::make_pair(first, second));
+        else
+            pairs.push_back(std::make_pair(second, first));
+    }
+    return pairs;
+}
+
+void    PmergeMe::sortDeque()
+{
+    this->fordJohnsonDeque(this->_deque);
+}
+
+void    PmergeMe::fordJohnsonDeque(std::deque<int> &container)
+{
+    if (container.size() <= 1)
+        return ;
+
+    std::deque<std::pair<int, int> > pairs = createDequePairs(container);
+
+    std::deque<int>    sortedLargerValues;
+    for (std::deque<std::pair<int, int> >::iterator pairsIt = pairs.begin(); pairsIt != pairs.end(); ++pairsIt)
+        sortedLargerValues.push_back(pairsIt->second);
+
+    this->fordJohnsonDeque(sortedLargerValues);
+    this->reorderDequePairsByLargerValues(pairs, sortedLargerValues);
+
+    std::deque<int> result;
+    this->fillDequeResult(result, pairs);
+
+    std::deque<std::pair<int, std::size_t> > pendingSmallerValues;
+    for (std::size_t i = 1; i < pairs.size(); ++i)
+        pendingSmallerValues.push_back(std::make_pair(pairs[i].first, i + 1));
+    if (container.size() % 2 != 0)
+        pendingSmallerValues.push_back(std::make_pair(container.back(), result.size()));
+    
+    std::deque<std::size_t> insertionOrder = getDequeJacobsthalOrder(pendingSmallerValues.size());
+    this->insertDequePendingSmallerElements(result, pendingSmallerValues, insertionOrder);
+
+    container.swap(result);
+}
+
+void    PmergeMe::reorderDequePairsByLargerValues(std::deque<std::pair<int, int> > &pairs, const std::deque<int> &sortedLargerValues) const
+{
+    for (std::size_t sortedIndex = 0; sortedIndex < sortedLargerValues.size(); ++sortedIndex)
+    {
+        std::size_t pairsIndex = sortedIndex;
+        
+        while (pairsIndex < pairs.size() && pairs[pairsIndex].second != sortedLargerValues[sortedIndex])
+            ++pairsIndex;
+            
+        if (pairsIndex == pairs.size())
+            throw std::runtime_error("failed to reorder pairs");
+
+        if (pairsIndex != sortedIndex)
+            std::swap(pairs[pairsIndex], pairs[sortedIndex]);
+    }
+}
+
+void    PmergeMe::fillDequeResult(std::deque<int> &result, const std::deque<std::pair<int, int> > &pairs) const
+{
+    result.push_back(pairs[0].first);
+    for (std::deque<std::pair<int, int> >::const_iterator pairsIt = pairs.begin(); pairsIt != pairs.end(); ++pairsIt)
+        result.push_back(pairsIt->second);
+}
+
+std::deque<std::size_t>    PmergeMe::getDequeJacobsthalOrder(std::size_t nbToInsert) const
+{
+    size_t                      previous = 1;
+    size_t                      current = 3;
+    size_t                      position;
+    std::deque<std::size_t>    insertionOrder;
+    
+    while (insertionOrder.size() < nbToInsert)
+    {
+        position = current;
+        if (position > nbToInsert + 1)
+            position = nbToInsert + 1;
+
+        while (position > previous)
+        {
+            insertionOrder.push_back(position - 2);
+            position--;
+        }
+        
+        std::size_t next = current + 2 * previous;
+        previous = current;
+        current = next;
+    }
+    
+    return insertionOrder;
+}
+
+void    PmergeMe::insertDequePendingSmallerElements(std::deque<int> &result, std::deque<std::pair<int, std::size_t> > &pendingSmallerValues, const std::deque<std::size_t> &insertionOrder) const
+{
+    for (std::size_t i = 0; i < insertionOrder.size(); ++i)
+    {
+        int valueToInsert = pendingSmallerValues[insertionOrder[i]].first;
+        std::size_t largerPosition = pendingSmallerValues[insertionOrder[i]].second;
+
+        std::deque<int>::iterator insertionPosition = std::lower_bound(result.begin(), result.begin() + largerPosition, valueToInsert);
         std::size_t insertedPosition = static_cast<std::size_t>(insertionPosition - result.begin());
         result.insert(insertionPosition, valueToInsert);
 
