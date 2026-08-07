@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 12:03:01 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/17 16:42:27 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/07 18:36:18 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 {
     if (argc != 2)
     {
-        std::cerr << "Error: cound not open file" << std::endl;
+        std::cerr << "Error: could not open file" << std::endl;
         return 1;
     }
 

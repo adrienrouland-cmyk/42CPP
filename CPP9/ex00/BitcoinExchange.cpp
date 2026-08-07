@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 12:13:23 by arouland          #+#    #+#             */
-/*   Updated: 2026/08/07 17:37:45 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/07 18:35:31 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ BitcoinExchange& BitcoinExchange::operator=(BitcoinExchange const &rhs)
 /*
 - charge data.csv dans notre _db en map
 - utilise des stream -> sépare gauche de la virugle -> date en std::string
-- valeur à droite -> exchange rate -> convertir en float
+- valeur à droite -> exchange rate -> convertir en double
 - met clé + valeur dans notre _db
 
 erreurs :
 - bon header -> data value
 - cas plusieurs virgules, pas de virgules
 - dates -> split, gauche doit être date -> check deux tirets.
-- membre de droite est float valide ou int valide.
+- membre de droite est double valide ou int valide.
 */
 bool BitcoinExchange::loadDatabase(const std::string &filename)
 {
@@ -81,10 +81,10 @@ bool BitcoinExchange::loadDatabase(const std::string &filename)
         std::stringstream ssValue(strValue);
         // >> fait la conversion vers le type de la variable
         //.eof() -> check qu'il ne reste aucun caractère parasite après le nombre.
-        float value;
-        if (!(ssValue >> value) || !ssValue.eof()) // stringstream convertit en float
+        double value;
+        if (!(ssValue >> value) || !ssValue.eof()) // stringstream convertit en double
         {
-            std::cerr << "Error: invalid float value in database => " << strValue << std::endl;
+            std::cerr << "Error: invalid double value in database => " << strValue << std::endl;
             continue;
         }
         this->_database[strDate] = value;
@@ -101,7 +101,7 @@ ne stock pas les valeurs du fichier d'entrée -> le fichier est traité ligne pa
     - vérifier valeur
 - calculer résultat
     - récupérer le taux
-    - const float result = 
+    - const double result = 
 - afficher
 */
 void BitcoinExchange::processInput(const std::string &filename)
@@ -146,7 +146,7 @@ void BitcoinExchange::processInput(const std::string &filename)
         
 
         std::stringstream ssValue(strValue);
-        float value;
+        double value;
         if (!(ssValue >> value) || !ssValue.eof())
         {
             std::cerr << "Error: bad input => " << strValue << std::endl;
@@ -165,7 +165,7 @@ void BitcoinExchange::processInput(const std::string &filename)
         }
 
         try {
-            float rate = getRateForDate(date); // si fail -> throw error
+            double rate = getRateForDate(date); // si fail -> throw error
             std::cout << date << " => " << value << " = " << (value * rate) << std::endl;
         }
         catch (const std::exception &e) {
@@ -182,9 +182,9 @@ void BitcoinExchange::processInput(const std::string &filename)
         - si existe : retourne son taux
         - sinon : erreur -> throw
 */
-float BitcoinExchange::getRateForDate(const std::string &date) const
+double BitcoinExchange::getRateForDate(const std::string &date) const
 {
-    std::map<std::string, float>::const_iterator it;
+    std::map<std::string, double>::const_iterator it;
 
     it = _database.lower_bound(date); // return 1er elem dont date >= date recherchée
     if (it != _database.end() && it->first == date) // date exacte
