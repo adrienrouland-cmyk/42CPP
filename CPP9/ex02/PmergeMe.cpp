@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 12:47:36 by arouland          #+#    #+#             */
-/*   Updated: 2026/08/07 22:14:53 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/07 23:27:19 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void    PmergeMe::printBefore() const
     for (std::size_t i = 0; i < nbDisplay; i++)
         std::cout << " " << this->_vector[i];
 
-    if (this->_vector.size() > 5)
+    if (this->_vector.size() > 20)
         std::cout << " [...]";
         
     std::cout << std::endl;
@@ -130,7 +130,7 @@ void    PmergeMe::printAfter() const
     for (std::size_t i = 0; i < nbDisplay; i++)
         std::cout << " " << this->_vector[i];
 
-    if (this->_vector.size() > 5)
+    if (this->_vector.size() > 20)
         std::cout << " [...]";
         
     std::cout << std::endl;
