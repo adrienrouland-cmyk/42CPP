@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 17:19:08 by arouland          #+#    #+#             */
-/*   Updated: 2026/08/07 23:05:35 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/07 23:06:47 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void    RPN::RPNOperations(const std::string &str)
             else if (token == "*")
             {
                 if ((left > 0 && ((right > 0 && right > max / left) || (right < 0 && right < min / left)))
-                    || (left < 0 && ((right > 0 && left < min / right) || (right < 0 && left > max / right))))
+                    || (left < 0 && ((right > 0 && left < min / right) || (right < 0 && left < max / right))))
                 {
                     std::cerr << "Error: overflow" << std::endl;
                     return ;
