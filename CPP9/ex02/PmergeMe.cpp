@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 12:47:36 by arouland          #+#    #+#             */
-/*   Updated: 2026/08/06 19:17:35 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/07 12:43:41 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,35 @@ void    PmergeMe::fillDeque(int argc, char **argv)
 void    PmergeMe::printBefore() const
 {
     std::cout << "Before:";
+
+    std::size_t nbDisplay = this->_vector.size();
+
+    if (nbDisplay > 5)
+        nbDisplay = 4;
     
-    for (std::vector<int>::const_iterator it = _vector.begin(); it != _vector.end(); ++it)
-        std::cout << " " << *it;
+    for (std::size_t i = 0; i < nbDisplay; i++)
+        std::cout << " " << this->_vector[i];
+
+    if (this->_vector.size() > 5)
+        std::cout << " [...]";
+        
+    std::cout << std::endl;
+}
+
+void    PmergeMe::printAfter() const
+{
+    std::cout << "After:";
+
+    std::size_t nbDisplay = this->_vector.size();
+
+    if (nbDisplay > 5)
+        nbDisplay = 4;
+    
+    for (std::size_t i = 0; i < nbDisplay; i++)
+        std::cout << " " << this->_vector[i];
+
+    if (this->_vector.size() > 5)
+        std::cout << " [...]";
         
     std::cout << std::endl;
 }
@@ -132,41 +158,60 @@ void    PmergeMe::sortVector()
     this->fordJohnsonVector(this->_vector);
 }
 
-void    PmergeMe::fordJohnsonVector(std::vector<int> & container)
+void    PmergeMe::fordJohnsonVector(std::vector<int> &container)
 {
     if (container.size() <= 1)
         return ;
 
     std::vector<std::pair<int, int> > pairs = createVectorPairs(container);
 
-    std::vector<int> supValues;
-    supValues.reserve(pairs.size());
-    for (std::vector<std::pair<int, int> >::const_iterator it = pairs.begin(); it != pairs.end(); ++it)
-    {
-        supValues.push_back(it->second);
-    }
+    std::vector<int>    sortedLargerValues;
+    for (std::vector<std::pair<int, int> >::iterator pairsIt = pairs.begin(); pairsIt != pairs.end(); ++pairsIt)
+        sortedLargerValues.push_back(pairsIt->second);
 
-    this->fordJohnsonVector(supValues); // récursif
+    this->fordJohnsonVector(sortedLargerValues);
+    this->reorderPairsByLargerValues(pairs, sortedLargerValues);
 
-    std::vector<std::pair<int, int> > orderedPairs;
-    std::vector<std::pair<int, int> > remainingPairs = pairs;
+    std::vector<int> result;
+    result.reserve(container.size());
+    this->fillVectorResult(result, pairs);
+
+    std::vector<std::pair<int, int> > pendingPairs;
+    for (size_t i = 1; i < pairs.size(); ++i)
+        pendingPairs.push_back(pairs[i]);
+    if (container.size() % 2 != 0)
+        pendingPairs.push_back(container.back(), -1);
+
     
-    orderedPairs.reserve(pairs.size());
-    for (std::vector<int>::const_iterator supIt = supValues.begin(); supIt != supValues.end(); ++supIt)
+}
+
+void    PmergeMe::reorderPairsByLargerValues(std::vector<std::pair<int, int> > &pairs, const std::vector<int> &sortedLargerValues) const
+{
+    for (std::size_t sortedIndex = 0; sortedIndex < sortedLargerValues.size(); ++sortedIndex)
     {
-        for (std::vector<std::pair<int, int> >::iterator pairIt = remainingPairs.begin(); pairIt != remainingPairs.end(); ++pairIt)
-        {
-            if (pairIt->second == *supIt)
-            {
-                orderedPairs.push_back(*pairIt);
-                remainingPairs.erase(pairIt);
-                break;
-            }
-        }
+        std::size_t pairsIndex = sortedIndex;
+        
+        while (pairsIndex < pairs.size() && pairs[pairsIndex].second != sortedLargerValues[sortedIndex])
+            ++pairsIndex;
+            
+        if (pairsIndex == pairs.size())
+            throw std::runtime_error("failed to reorder pairs");
+
+        if (pairsIndex != sortedIndex)
+            std::swap(pairs[pairsIndex], pairs[sortedIndex]);
     }
+}
 
-    if (orderedPairs.size() != pairs.size())
-        throw std::runtime_error("failed to reorder pairs");
+void    PmergeMe::fillVectorResult(std::vector<int> &result, const std::vector<std::pair<int, int> > &pairs) const
+{
+    result.push_back(pairs[0].first);
+    for (std::vector<std::pair<int, int> >::iterator pairsIt = pairs.begin(); pairsIt != pairs.end(); ++pairsIt)
+    {
+        result.push_back(pairsIt->second);
+    }
+}
 
-    pairs.swap(orderedPairs);
+std::vector<std::size_t>    PmergeMe::getVectorJacobsthalOrder(std::size_t nbToInsert) const
+{
+    
 }

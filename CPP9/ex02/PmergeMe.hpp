@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 12:47:35 by arouland          #+#    #+#             */
-/*   Updated: 2026/08/06 18:35:44 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/07 12:42:51 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,17 @@ class PmergeMe
         void    printBefore() const;
         void    sortVector();
         void    sortDeque();
+        void    printAfter() const;
     private:
         std::vector<int>    _vector;
         std::deque<int>     _deque;
 
         std::vector<std::pair<int, int> >   createVectorPairs(const std::vector<int> &container) const;
         void                                fordJohnsonVector(std::vector<int> &container);
+        void                                reorderPairsByLargerValues(std::vector<std::pair<int, int> > &pairs, const std::vector<int> &sortedLargerValues) const;
+        void                                fillVectorResult(std::vector<int> &result, std::vector<std::pair<int, int> > &pairs) const;
+        std::vector<std::size_t>            getVectorJacobsthalOrder(std::size_t nbToInsert) const;
+        
         std::deque<std::pair<int, int> >    createDequePairs(const std::deque<int> &container) const;
         
 };
