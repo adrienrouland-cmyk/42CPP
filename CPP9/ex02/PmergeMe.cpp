@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 12:47:36 by arouland          #+#    #+#             */
-/*   Updated: 2026/08/07 12:43:41 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/07 16:44:13 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,13 +176,16 @@ void    PmergeMe::fordJohnsonVector(std::vector<int> &container)
     result.reserve(container.size());
     this->fillVectorResult(result, pairs);
 
-    std::vector<std::pair<int, int> > pendingPairs;
-    for (size_t i = 1; i < pairs.size(); ++i)
-        pendingPairs.push_back(pairs[i]);
+    std::vector<std::pair<int, std::size_t> > pendingSmallerValues;
+    for (std::size_t i = 1; i < pairs.size(); ++i)
+        pendingSmallerValues.push_back(std::make_pair(pairs[i].first, i + 1));
     if (container.size() % 2 != 0)
-        pendingPairs.push_back(container.back(), -1);
-
+        pendingSmallerValues.push_back(std::make_pair(container.back(), result.size()));
     
+    std::vector<std::size_t> insertionOrder = getVectorJacobsthalOrder(pendingSmallerValues.size());
+    this->insertVectorPendingSmallerElements(result, pendingSmallerValues, insertionOrder);
+
+    container.swap(result);
 }
 
 void    PmergeMe::reorderPairsByLargerValues(std::vector<std::pair<int, int> > &pairs, const std::vector<int> &sortedLargerValues) const
@@ -205,13 +208,53 @@ void    PmergeMe::reorderPairsByLargerValues(std::vector<std::pair<int, int> > &
 void    PmergeMe::fillVectorResult(std::vector<int> &result, const std::vector<std::pair<int, int> > &pairs) const
 {
     result.push_back(pairs[0].first);
-    for (std::vector<std::pair<int, int> >::iterator pairsIt = pairs.begin(); pairsIt != pairs.end(); ++pairsIt)
-    {
+    for (std::vector<std::pair<int, int> >::const_iterator pairsIt = pairs.begin(); pairsIt != pairs.end(); ++pairsIt)
         result.push_back(pairsIt->second);
-    }
 }
 
 std::vector<std::size_t>    PmergeMe::getVectorJacobsthalOrder(std::size_t nbToInsert) const
 {
+    size_t                      previous = 1;
+    size_t                      current = 3;
+    size_t                      position;
+    std::vector<std::size_t>    insertionOrder;
     
+    while (insertionOrder.size() < nbToInsert)
+    {
+        position = current;
+        if (position > nbToInsert + 1)
+            position = nbToInsert + 1;
+
+        while (position > previous)
+        {
+            insertionOrder.push_back(position - 2);
+            position--;
+        }
+        
+        std::size_t next = current + 2 * previous;
+        previous = current;
+        current = next;
+    }
+    
+    return insertionOrder;
+}
+
+void    PmergeMe::insertVectorPendingSmallerElements(std::vector<int> &result, std::vector<std::pair<int, std::size_t> > &pendingSmallerValues, const std::vector<std::size_t> &insertionOrder) const
+{
+    for (std::size_t i = 0; i < insertionOrder.size(); ++i)
+    {
+        int valueToInsert = pendingSmallerValues[insertionOrder[i]].first;
+        std::size_t largerPosition = pendingSmallerValues[insertionOrder[i]].second;
+
+        std::vector<int>::iterator insertionPosition = std::lower_bound(result.begin(), result.begin() + largerPosition, valueToInsert);
+        std::size_t insertedPosition = static_cast<std::size_t>(insertionPosition - result.begin());
+        result.insert(insertionPosition, valueToInsert);
+
+        // là faut augmenter les positions des partners qui sont après l'insertion pour faire + 1
+        for (std::size_t j = 0; j < pendingSmallerValues.size(); ++j)
+        {
+            if (pendingSmallerValues[j].second >= insertedPosition)
+                pendingSmallerValues[j].second++;
+        }
+    }
 }
