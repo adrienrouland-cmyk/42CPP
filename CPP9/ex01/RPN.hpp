@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 17:03:01 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/19 18:20:47 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/07 17:43:01 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <string>
 #include <sstream>
 #include <iostream>
+#include <cctype>
 
 class RPN {
     public:
