@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 12:13:23 by arouland          #+#    #+#             */
-/*   Updated: 2026/08/06 12:45:49 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/07 17:37:45 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ bool BitcoinExchange::loadDatabase(const std::string &filename)
     std::ifstream file(filename.c_str());
     if (!file.is_open()) 
     {
-        std::cerr << "Error: cound not open file" << std::endl;
+        std::cerr << "Error: could not open file" << std::endl;
         return false;
     }
 
