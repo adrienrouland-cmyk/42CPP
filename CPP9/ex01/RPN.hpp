@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 17:03:01 by arouland          #+#    #+#             */
-/*   Updated: 2026/08/07 17:43:01 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/07 22:25:40 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <sstream>
 #include <iostream>
 #include <cctype>
+#include <limits>
 
 class RPN {
     public:
@@ -29,7 +30,7 @@ class RPN {
         void RPNOperations(const std::string &str);
     
     private:
-        std::stack<int> _stack;
+        std::stack<long> _stack;
 };
 
 #endif

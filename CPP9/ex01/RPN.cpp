@@ -6,7 +6,7 @@
 /*   By: arouland <arouland@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/17 17:19:08 by arouland          #+#    #+#             */
-/*   Updated: 2026/07/19 18:41:14 by arouland         ###   ########.fr       */
+/*   Updated: 2026/08/07 22:58:25 by arouland         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,22 +63,53 @@ void    RPN::RPNOperations(const std::string &str)
                 return ;
             }
 
-            int right = this->_stack.top();
+            long right = this->_stack.top();
             this->_stack.pop();
-            int left = this->_stack.top();
+            long left = this->_stack.top();
             this->_stack.pop();
-            int result = 0;
+            long result = 0;
+            const long max = std::numeric_limits<long>::max();
+            const long min = std::numeric_limits<long>::min();
+            
             if (token == "+")
+            {
+                if ((right > 0 && left + right > max) || (right < 0 && left + right < min))
+                {
+                    std::cerr << "Error: overflow" << std::endl;
+                    return ;
+                }
                 result = left + right;
+            }
             else if (token == "-")
+            {
+                if ((right > 0 && left - right < min) || (right < 0 && left - right > max))
+                {
+                    std::cerr << "Error: overflow" << std::endl;
+                    return ;
+                }
                 result = left - right;
+            }
             else if (token == "*")
+            {
+                if ((left > 0 && ((right > 0 && left > max / right) || (right < 0 && left < min / right)))
+                    || (left < 0 && ((right > 0 && left < min / right) || (right < 0 && left > max / right))))
+                {
+                    std::cerr << "Error: overflow" << std::endl;
+                    return ;
+                }
                 result = left * right;
+            }
             else if (token == "/")
             {
-                if (right == 0) {
+                if (right == 0) 
+                {
                     std::cerr << "Error" << std::endl;
                     return;
+                }
+                if (left == min && right == -1)
+                {
+                    std::cerr << "Error: overflow" << std::endl;
+                    return ;
                 }
                 result = left / right;
             }
